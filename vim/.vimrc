@@ -36,6 +36,7 @@ filetype indent on
 set nowrap 
 set linebreak 
 
+set omnifunc=syntaxcomplete#Complete
 
 set wildmode=list:longest
 set wildmenu "enable ctrl-n and ctrl-p to scroll thru matches
@@ -75,6 +76,8 @@ Plugin 'marijnh/tern_for_vim'
 Plugin 'moll/vim-node'
 Plugin 'godlygeek/tabular'
 Plugin 'SirVer/ultisnips'
+Plugin 'ervandew/supertab'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -98,9 +101,15 @@ set completeopt-=preview
 let g:syntastic_check_on_open=1
 
 " snips -->
-let g:UltiSnipsExpandTrigger="<C-tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
 
 " maos -->
 map <C-right> $

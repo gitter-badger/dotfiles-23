@@ -1,8 +1,15 @@
 #!/bin/bash
-SHOULD_INSTALL=false
+SHOULD_INSTALL=false;
+SHOULD_BACKUP=false;
+
 if [[ $* == *-i* ]]; then
   SHOULD_INSTALL=true;
 fi
+
+if [[ $* == *-b* ]]; then
+  SHOULD_BACKUP=true;
+fi
+
 
 if [ ! -d ~/.oh-my-zsh ]; then
   curl -L http://install.ohmyz.sh | sh;
@@ -10,7 +17,7 @@ fi
 
 # BACKUP AND COPY ACCROSS .ZSHRC
 # ------------------------------
-if [ -f ~/.zshrc ]; then
+if [ -f ~/.zshrc ] && [ "$SHOULD_BACKUP"=true ] ; then
   echo '-------------------'
   echo 'Backing up current .zshrc'
   echo '-------------------'
@@ -86,7 +93,7 @@ if [ ! -d ~/.rvm/rubies/ruby-2.* ]; then
   rvm install 2.1.1;
 fi
 
-if [ -f ~/.gemrc ]; then
+if [ -f ~/.gemrc ] && [ "$SHOULD_BACKUP"=true ]; then
   mv ~/.gemrc ~/.backup.gemrc;
 fi
 
@@ -109,17 +116,11 @@ if [ "$SHOULD_INSTALL" = true ]; then
 fi
 
 
-if [ -d ~/.vim ]; then
-  
-  echo '-------------------';
-  echo 'Backing up local ~/vim';
-  echo '-------------------';
-  
-  rm -rf ~/.backup.vim;
-  mv ~/.vim ~/.backup.vim;
+if [ -d ~/.vim ]; then 
+  rm -rf ~/.vim
 fi
 
-if [ -f ~/.vimrc ]; then
+if [ -f ~/.vimrc ] && [ "$SHOULD_BACKUP"=true ]; then
 
   echo '-------------------';
   echo 'Backing up local ~/.vimrc';
@@ -158,10 +159,10 @@ cd ~/.dotfiles/vim/bundle/tern_for_vim/;
 npm install;
 
 # UtliSnip ------
-ln -s ~/.vim/ultisnips/ftdetect/* ~/.vim/ftdetect/;
+ln -s ~/.vim/ultisnips/ftdetect ~/.vim/ftdetect;
 
 
-if [ -f ~/.tmux.conf ]; then
+if [ -f ~/.tmux.conf ] && [ "$SHOULD_BACKUP"=true ]; then
   mv ~/.tmux.com ~/.backup.tmux.conf;
 fi
 
