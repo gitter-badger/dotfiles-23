@@ -11,6 +11,10 @@ if [[ $* == *-b* ]]; then
 fi
 
 
+if [ ! -d ~/.dotfiles ]; then
+  git clone git@github.com:cutandpastey/dotfiles.git ~/.dotfiles;
+fi
+
 if [ ! -d ~/.oh-my-zsh ]; then
   curl -L http://install.ohmyz.sh | sh;
 fi
@@ -167,6 +171,11 @@ if [ -f ~/.tmux.conf ] && [ "$SHOULD_BACKUP"=true ]; then
 fi
 
 ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+
+if [ -f ~/.gitconfig ]; then
+  mv ~/.gitconfig ~/.backup.gitconfig;
+  ln -s ~/.dotfiles/gitconfig ~/.gitconfig;
+fi
 
 
 echo '-------------------';

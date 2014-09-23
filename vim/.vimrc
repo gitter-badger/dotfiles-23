@@ -77,7 +77,7 @@ Plugin 'moll/vim-node'
 Plugin 'godlygeek/tabular'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
-
+Plugin 'scrooloose/nerdcommenter'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -90,7 +90,6 @@ colorscheme solarized
 " nerdtree -->
 autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let NERDTreeShowHidden=1
 
 " code completion
 let g:ycm_add_preview_to_completeopt=0
@@ -101,6 +100,7 @@ set completeopt-=preview
 let g:syntastic_check_on_open=1
 
 " snips -->
+
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
@@ -109,11 +109,20 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-" maos -->
+" NerdCommenter -->
+" left g:NERDComComment = <C-c>
+" left g:NERDComUncommentLine = <C-f>
+
+
+" maps -->
+nnoremap ; :
+
 map <C-right> $
 map <C-left> ^
 map <C-up> gg
 map <C-down> GG
 
+map <C-c> <plug>NERDCommenterComment
+map <C-f> <plug>NERDCommenterUncomment
