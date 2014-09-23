@@ -58,13 +58,16 @@ set sidescroll=1
 set guioptions-=r 
 set guioptions-=l
 
+set listchars=tab:▸\ ,eol:¬
+
 syntax on
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
+"Plugin 'altercation/vim-colors-solarized'
+Plugin 'sickill/vim-monokai'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
@@ -78,6 +81,8 @@ Plugin 'godlygeek/tabular'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -85,7 +90,7 @@ filetype plugin indent on    " required
 " solarised -->
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme monokai
 
 " nerdtree -->
 autocmd vimenter * NERDTree
@@ -126,3 +131,7 @@ map <C-down> GG
 
 map <C-c> <plug>NERDCommenterComment
 map <C-f> <plug>NERDCommenterUncomment
+
+noremap <C-l> :Autoformat<CR><CR>
+
+nmap <leader>l :set list!<CR>

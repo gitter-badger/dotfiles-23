@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
 #theme
-ZSH_THEME="bureau"
+ZSH_THEME="avit"
 COMPLETION_WAITING_DOTS="true"
 export LANG=en_GB.UTF-8
 
