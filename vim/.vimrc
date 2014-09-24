@@ -11,6 +11,7 @@ set visualbell
 set autoread
 set clipboard=unnamed
 set hidden
+set autoread
 
 set noswapfile
 set nobackup
@@ -66,7 +67,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-"Plugin 'altercation/vim-colors-solarized'
 Plugin 'sickill/vim-monokai'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jelera/vim-javascript-syntax'
@@ -77,12 +77,13 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'moll/vim-node'
-Plugin 'godlygeek/tabular'
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'docunext/closetag.vim'
+Plugin 'yueyoum/vim-linemovement'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -94,6 +95,7 @@ colorscheme monokai
 
 " nerdtree -->
 autocmd vimenter * NERDTree
+autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " code completion
@@ -123,11 +125,16 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " maps -->
 nnoremap ; :
+nnoremap \ ,
+
 
 map <C-right> $
 map <C-left> ^
 map <C-up> gg
 map <C-down> GG
+
+let g:linemovement_up="<C-S-Up>"
+let g:linemovement_down="<C-S-Down>"
 
 map <C-c> <plug>NERDCommenterComment
 map <C-f> <plug>NERDCommenterUncomment

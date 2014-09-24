@@ -9,7 +9,10 @@ fi
 if [[ $* == *-b* ]]; then
   SHOULD_BACKUP=true;
 fi
-
+if [ -d ~/backup ]; then
+  rm -rf ~/backup;
+fi
+mkdir ~/backup;
 
 if [ ! -d ~/.dotfiles ]; then
   git clone git@github.com:cutandpastey/dotfiles.git ~/.dotfiles;
@@ -25,7 +28,7 @@ if [ -f ~/.zshrc ] && [ "$SHOULD_BACKUP"=true ] ; then
   echo '-------------------'
   echo 'Backing up current .zshrc'
   echo '-------------------'
-  mv ~/.zshrc ~/.backup.zshrc;
+  mv ~/.zshrc ~/backup/.zshrc;
 fi
 
 echo '-------------------'
@@ -40,7 +43,7 @@ if [ ! -d ~/.nvm ]; then
   echo '-------------------';
   echo 'Installing NVM';
   echo '-------------------';
-  
+
   git clone https://github.com/creationix/nvm.git $HOME/.nvm;
   cd $HOME/.nvm;
   git checkout `git describe --abbrev=0 --tags`;
@@ -56,7 +59,7 @@ if [ ! -d ~/.rvm ]; then
   echo 'Installing RVM';
   echo '-------------------';  
 
-  curl -sSL https://get.rvm.io | bash -s stable;
+  curl -sSL https://get.rvm.io | bash -s stable  --autolibs=homebrew;
   export PATH="$PATH:$HOME/.rvm/bin";
 fi
 
@@ -64,7 +67,7 @@ fi
 # SETUP Node
 # ------------------------------
 if [ ! -d ~/.nvm/v0.10.* ]; then 
-  
+
   echo '-------------------';
   echo 'Installing nodejs >= v0.10';
   echo '-------------------';
@@ -77,7 +80,7 @@ fi
 
 
 if [ "$SHOULD_INSTALL" = true ]; then 
-  
+
   echo '-------------------';
   echo 'Installing global npm deps';
   echo '-------------------';
@@ -89,7 +92,7 @@ fi
 # SETUP Ruby
 # ------------------------------
 if [ ! -d ~/.rvm/rubies/ruby-2.* ]; then 
-  
+
   echo '-------------------';
   echo 'Installing ruby >= 2.1.1';
   echo '-------------------';
@@ -98,7 +101,7 @@ if [ ! -d ~/.rvm/rubies/ruby-2.* ]; then
 fi
 
 if [ -f ~/.gemrc ] && [ "$SHOULD_BACKUP"=true ]; then
-  mv ~/.gemrc ~/.backup.gemrc;
+  mv ~/.gemrc ~/backup/.gemrc;
 fi
 
 # install global gem deps
@@ -111,7 +114,7 @@ ln -s ~/.dotfiles/gem/.gemrc ~/.gemrc;
 
 
 if [ "$SHOULD_INSTALL" = true ]; then
-  
+
   echo '-------------------';
   echo 'Installing global gem deps';
   echo '-------------------';
@@ -129,9 +132,8 @@ if [ -f ~/.vimrc ] && [ "$SHOULD_BACKUP"=true ]; then
   echo '-------------------';
   echo 'Backing up local ~/.vimrc';
   echo '-------------------';
-  
-  rm -f ~/.backup.vimrc;
-  mv ~/.vimrc ~/.backup.vimrc;
+
+  mv ~/.vimrc ~/backup/.vimrc;
   rm -f ~/.vimrc;
 fi
 
@@ -139,7 +141,7 @@ ln -s ~/.dotfiles/vim ~/.vim;
 ln -s ~/.dotfiles/vim/.vimrc ~/.vimrc;
 
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-  
+
   echo '-------------------';
   echo 'Installing vundle';
   echo '-------------------';
@@ -156,7 +158,7 @@ fi
 vim +PluginInstall +qall
 
 # YouCompleteMe -----
-~/.vim/bundle/YouCompleteMe/install.sh;
+~/.vim/bundle/YouCompleteMe/install.sh --clang-completer;
 
 # tern ------
 cd ~/.dotfiles/vim/bundle/tern_for_vim/;
@@ -167,15 +169,25 @@ ln -s ~/.vim/ultisnips/ftdetect ~/.vim/ftdetect;
 
 
 if [ -f ~/.tmux.conf ] && [ "$SHOULD_BACKUP"=true ]; then
-  mv ~/.tmux.com ~/.backup.tmux.conf;
+  mv ~/.tmux.com ~/backup/.tmux.conf;
 fi
 
 ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 if [ -f ~/.gitconfig ]; then
-  mv ~/.gitconfig ~/.backup.gitconfig;
+  mv ~/.gitconfig ~/backup/.gitconfig;
   ln -s ~/.dotfiles/gitconfig ~/.gitconfig;
 fi
+
+if [ -f ~/.inputrc ] && [ "$SHOULD_BACKUP"=true ]; then mv ~/.inputrc ~/backup/.inputrc; fi
+ln -s ~/.dotfiles/.inputrc ~/.inputrc;
+
+
+if [ -f ~/.jsbeautifyrc ] && [ "$SHOULD_BACKUP"=true ]; then mv ~/.inputrc ~/backup/.inputrc; fi
+ln -s ~/.dotfiles/.jsbeautifyrc ~/.jsbeautifyrc;
+
+if [ -f ~/.jshintrc ]&& [ "$SHOULD_BACKUP"=true ]; then mv ~/.inputrc ~/backup/.inputrc; fi
+ln -s ~/.dotfiles/.jshintrc ~/.jshintrc;
 
 
 echo '-------------------';
