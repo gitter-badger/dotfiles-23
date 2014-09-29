@@ -64,6 +64,7 @@ set listchars=tab:▸\ ,eol:¬
 syntax on
 
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/path/to/jsx.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
@@ -84,11 +85,21 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'docunext/closetag.vim'
 Plugin 'yueyoum/vim-linemovement'
+Plugin 'jordwalke/JSXVimHint'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" solarised -->
+" tmux --->
+if &term =~ '^screen'
+  " tmux will send xterm-style keys when its xterm-keys option is on
+  execute "set <xUp>=\e[1;*A"
+  execute "set <xDown>=\e[1;*B"
+  execute "set <xRight>=\e[1;*C"
+  execute "set <xLeft>=\e[1;*D"
+endif
+
+" colors -->
 syntax enable
 set background=dark
 colorscheme monokai
@@ -97,6 +108,7 @@ colorscheme monokai
 autocmd vimenter * NERDTree
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 
 " code completion
 let g:ycm_add_preview_to_completeopt=0
@@ -118,10 +130,9 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-" NerdCommenter -->
-" left g:NERDComComment = <C-c>
-" left g:NERDComUncommentLine = <C-f>
-
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+let g:jsCommand='node'
+let g:syntastic_javascript_checkers=['jsxhint']
 
 " maps -->
 nnoremap ; :
@@ -132,6 +143,8 @@ map <C-right> $
 map <C-left> ^
 map <C-up> gg
 map <C-down> GG
+
+map <I> NERDTreeShowHidden=1
 
 let g:linemovement_up="<C-S-Up>"
 let g:linemovement_down="<C-S-Down>"

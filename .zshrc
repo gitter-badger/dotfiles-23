@@ -17,6 +17,8 @@ export NVM_DIR="$HOME/.nvm"
 # RVM --------------------------
 export PATH="$PATH:$HOME/.rvm/bin"
 
+export EDITOR='vim'
+
 # CUSTOM -----------------------
 for f in ~/.dotfiles/zsh/*.zsh; do source $f; done
 
