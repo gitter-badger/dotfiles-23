@@ -34,8 +34,8 @@ set expandtab
 filetype plugin on
 filetype indent on
 
-set nowrap 
-set linebreak 
+set nowrap
+set linebreak
 
 set omnifunc=syntaxcomplete#Complete
 
@@ -51,12 +51,15 @@ set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
+set wildignore+=node_modules*
+set wildignore+=bower_components*
+
 
 set scrolloff=8 "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
+set guioptions-=r
 
-set guioptions-=r 
 set guioptions-=l
 
 set listchars=tab:▸\ ,eol:¬
@@ -68,27 +71,52 @@ set rtp+=/path/to/jsx.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
+
+"style
 Plugin 'sickill/vim-monokai'
+
+"files
 Plugin 'scrooloose/nerdtree'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'pangloss/vim-javascript'
+Plugin 'jistr/vim-nerdtree-tabs'
+
+" search
+Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
+
+"syntax
+Plugin 'scrooloose/syntastic'
+Plugin 'Chiel92/vim-autoformat'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/syntastic'
+Plugin 'yueyoum/vim-linemovement'
+Plugin 'docunext/closetag.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'editorconfig/editorconfig-vim'
+
+"helpers
+Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'jlanzarotta/bufexplorer'
+
+"js & front end stack
 Plugin 'marijnh/tern_for_vim'
 Plugin 'moll/vim-node'
-Plugin 'SirVer/ultisnips'
-Plugin 'ervandew/supertab'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'docunext/closetag.vim'
-Plugin 'yueyoum/vim-linemovement'
-Plugin 'jordwalke/JSXVimHint'
 
-call vundle#end()            " required
-filetype plugin indent on    " required
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'jordwalke/JSXVimHint'
+Plugin 'burnettk/vim-angular'
+
+Plugin 'groenewege/vim-less'
+
+" required
+call vundle#end()
+" required
+filetype plugin indent on
 
 " tmux --->
 if &term =~ '^screen'
@@ -109,6 +137,8 @@ autocmd vimenter * NERDTree
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" spell check
+set spell spelllang=en_gb
 
 " code completion
 let g:ycm_add_preview_to_completeopt=0
@@ -131,8 +161,13 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng:"]
 let g:jsCommand='node'
 let g:syntastic_javascript_checkers=['jsxhint']
+
+let g:nerdtree_tabs_open_on_console_startup=1
+
+let g:ctrlp_working_path_mode = 'c'
 
 " maps -->
 nnoremap ; :
@@ -155,3 +190,37 @@ map <C-f> <plug>NERDCommenterUncomment
 noremap <C-l> :Autoformat<CR><CR>
 
 nmap <leader>l :set list!<CR>
+
+
+" Removes trailing spaces
+function! TrimWhiteSpace()
+  %s/\s\+$//e
+endfunction
+
+nnoremap <silent> <Leader>rts :call TrimWhiteSpace()<CR>
+
+autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd BufWritePre     * :call TrimWhiteSpace()
+nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+
+map ^[OA <up>
+map ^[OB <down>
+map ^[OC <right>
+map ^[OD <left>
+
+map <ALT-right> :tabn
+map <ALT-left> :tabp
+
+" tabs
+nnoremap <C-S-LEFT>   :tabprevious<CR>
+nnoremap <C-S-RIGHT>  :tabnext<CR>
+nnoremap <C-t>        :tabnew<CR>
+
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
+
+noremap <C-f> :Ag
+noremap <C-b> :BufExplorer<CR>
