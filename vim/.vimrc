@@ -18,6 +18,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 " search
 Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
+Plugin 'majutsushi/tagbar'
 
 "syntax
 Plugin 'scrooloose/syntastic'
@@ -28,6 +29,7 @@ Plugin 'yueyoum/vim-linemovement'
 Plugin 'docunext/closetag.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'stephpy/vim-yaml'
 
 "helpers
 Plugin 'ervandew/supertab'
@@ -67,7 +69,24 @@ set autoread
 set clipboard=unnamed
 set hidden
 set autoread
+set cursorline
 
+" Highlight searches
+set hlsearch
+" Ignore case of searches
+set ignorecase
+" Highlight dynamically as pattern is typed
+set incsearch
+" Enable mouse in all modes
+set mouse=a
+" Don’t reset cursor to start of line when moving around.
+set nostartofline
+" Show the cursor position
+
+" save file when leaving a buffer
+set autowrite
+
+set ruler
 set noswapfile
 set nobackup
 set nowb
@@ -143,6 +162,7 @@ autocmd vimenter * NERDTree
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+
 " spell check
 set spell spelllang=en_gb
 
@@ -177,6 +197,13 @@ let g:syntastic_javascript_checkers=['jshint']
 let g:nerdtree_tabs_open_on_console_startup=1
 
 let g:ctrlp_working_path_mode = 'c'
+
+" highlights -->
+hi clear SpellBad
+hi SpellBad cterm=underline
+
+hi SyntasticError   cterm=underline ctermfg=Red ctermbg=Red
+hi SyntasticWarning cterm=underline ctermfg=Red ctermbg=Red
 
 " maps -->
 nnoremap ; :
@@ -233,7 +260,13 @@ inoremap <C-t>     <Esc>:tabnew<CR>
 
 noremap <C-f> :Ag<SPACE>
 noremap <C-b> :BufExplorer<CR>
+noremap <C-t> :TagbarToggle<CR>
 
 noremap <C-s> :UltiSnipsEdit<CR>
 
+noremap <C-o> :copen 20<CR>
+
+au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+set cursorline cursorcolumn
 

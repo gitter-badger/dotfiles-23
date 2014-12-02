@@ -51,3 +51,54 @@ endsnippet
 snippet div
 <div>$0</div>
 endsnippet
+
+snippet desc
+describe('$1', function(){
+	$0
+})
+endsnippet
+
+snippet it
+it('$1', function(){
+	$0
+})
+endsnippet
+
+snippet given
+given('$1', function(){
+	$0
+})
+endsnippet
+
+snippet when
+when('$1', function(){
+	$0
+})
+endsnippet
+
+
+
+snippet tnoting
+var chai = require('chai');
+var webdriver = require('selenium-webdriver');
+var helpers = require('scribe-test-harness/helpers');
+
+var expect = chai.expect;
+
+var when = helpers.when;
+var given = helpers.given;
+var givenContentOf = helpers.givenContentOf;
+
+var scribeNode;
+beforeEach(function() {
+  scribeNode = helpers.scribeNode;
+});
+
+var note = require('./helpers/create-note');
+
+describe('The Scribe Noting Plugin', function(){
+	given('we are in a scribe element', function(){
+		$0
+	})
+})
+endsnippet
