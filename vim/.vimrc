@@ -16,9 +16,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 
 " search
-Plugin 'kien/ctrlp.vim'
 Plugin 'rking/ag.vim'
-Plugin 'majutsushi/tagbar'
 
 "syntax
 Plugin 'scrooloose/syntastic'
@@ -29,7 +27,6 @@ Plugin 'yueyoum/vim-linemovement'
 Plugin 'docunext/closetag.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'stephpy/vim-yaml'
 
 "helpers
 Plugin 'ervandew/supertab'
@@ -38,6 +35,10 @@ Plugin 'SirVer/ultisnips'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'jlanzarotta/bufexplorer'
+Plugin 'tpope/vim-fugitive'
+Plugin 'bling/vim-airline'
+Plugin 'vim-scripts/Conque-Shell'
+Plugin 'kien/ctrlp.vim'
 
 "js & front end stack
 Plugin 'marijnh/tern_for_vim'
@@ -138,7 +139,19 @@ set listchars=tab:▸\ ,eol:¬
 
 syntax on
 
-
+" Zoom / Restore window.
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! Zm call s:ZoomToggle()
 
 " ------ PLUGIN SETTINGS  --------
 " --------------------------------
@@ -224,9 +237,9 @@ map <C-c>   <plug>NERDCommenterComment
 map <C-S-c> <plug>NERDCommenterUncomment
 
 noremap <C-l> :Autoformat<CR><CR>
-
 nmap <leader>l :set list!<CR>
 
+noremap <C-v> :YRShow<CR>
 
 " Removes trailing spaces -->
 function! TrimWhiteSpace()
@@ -263,10 +276,12 @@ noremap <C-b> :BufExplorer<CR>
 noremap <C-t> :TagbarToggle<CR>
 
 noremap <C-s> :UltiSnipsEdit<CR>
-
 noremap <C-o> :copen 20<CR>
+noremap <C-p> :CtrlP<CR>
 
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
+
+
 
