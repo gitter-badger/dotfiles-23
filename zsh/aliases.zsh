@@ -19,3 +19,7 @@ alias gd='git diff'
 alias kmux="tmux ls | awk '{print $1}' | sed 's/://g' | xargs -I{} tmux kill-session -t {}"
 
 alias nt="npm run test"
+
+alias :q='exit'
+echo 'Loading alias'
+alias eclimd=/Applications/eclipse/eclimd

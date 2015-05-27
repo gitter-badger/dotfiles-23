@@ -1,1 +1,1 @@
-nvm use v0.10
+nvm use v0.12
