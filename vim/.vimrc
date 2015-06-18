@@ -21,12 +21,12 @@ Plugin 'rking/ag.vim'
 "syntax
 Plugin 'scrooloose/syntastic'
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Yggdroot/indentLine'
 Plugin 'Raimondi/delimitMate'
 Plugin 'yueyoum/vim-linemovement'
 Plugin 'docunext/closetag.vim'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'editorconfig/editorconfig-vim'
+
 
 "helpers
 Plugin 'ervandew/supertab'
@@ -34,11 +34,19 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-Plugin 'jlanzarotta/bufexplorer'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
-Plugin 'vim-scripts/Conque-Shell'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-eunuch'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'kshenoy/vim-signature'
+Plugin 'sjl/vitality.vim'
+Plugin 'justincampbell/vim-eighties'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'maxbrunsfeld/vim-yankstack'
 
 "js & front end stack
 Plugin 'marijnh/tern_for_vim'
@@ -51,7 +59,8 @@ Plugin 'wookiehangover/jshint.vim'
 Plugin 'burnettk/vim-angular'
 
 Plugin 'groenewege/vim-less'
-
+Plugin 'gcmt/taboo.vim'
+Plugin 'vim-scripts/Tagbar'
 " required
 call vundle#end()
 " required
@@ -59,6 +68,7 @@ filetype plugin indent on
 
 " ------ SETTINGS --------
 " -----------------------
+let mapleader = "\<Space>"
 set number
 set backspace=indent,eol,start
 set history=1000
@@ -136,6 +146,12 @@ set sidescroll=1
 set guioptions-=r
 set guioptions-=l
 set listchars=tab:▸\ ,eol:¬
+
+" code folding
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=1
 
 syntax on
 
@@ -233,11 +249,11 @@ map <I> NERDTreeShowHidden=1
 let g:linemovement_up="<C-S-Up>"
 let g:linemovement_down="<C-S-Down>"
 
-map <C-c>   <plug>NERDCommenterComment
-map <C-S-c> <plug>NERDCommenterUncomment
+map <Leader>c   <plug>NERDCommenterComment
+map <Leader><Leader>c <plug>NERDCommenterUncomment
 
-noremap <C-l> :Autoformat<CR><CR>
-nmap <leader>l :set list!<CR>
+noremap <Leader>t :Autoformat<CR><CR>
+nmap    <leader>l :set list!<CR>
 
 noremap <C-v> :YRShow<CR>
 
@@ -267,21 +283,40 @@ nnoremap <C-S-LEFT>   :tabprevious<CR>
 nnoremap <C-S-RIGHT>  :tabnext<CR>
 nnoremap <C-t>        :tabnew<CR>
 
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
 
-noremap <C-f> :Ag<SPACE>
+noremap <C-f> :Ag!<SPACE>
 noremap <C-b> :BufExplorer<CR>
 noremap <C-t> :TagbarToggle<CR>
 
-noremap <C-s> :UltiSnipsEdit<CR>
-noremap <C-o> :copen 20<CR>
+noremap <C-s>   :UltiSnipsEdit<CR>
+
+noremap <Leader>w   :copen <CR>
+noremap <Leader>q   :cclose <CR>
+noremap <Leader>r   :redraw!<CR>
+
 noremap <C-p> :CtrlP<CR>
+let g:ctrlp_working_path_mode = 'r'
 
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
 
+let g:EclimCompletionMethod = 'omnifunc'
+
+let g:indentLine_color_term = 241
 
 
+" HARDCORE MODE
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+noremap <Leader>to :TabooOpen <Space>
+noremap <Leader>tr :TabooRename <Space>
+
+let g:yankstack_map_keys = 0
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
+
+set conceallevel=0

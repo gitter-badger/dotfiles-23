@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
 #theme
-ZSH_THEME="avit"
+ZSH_THEME="agnoster"
 COMPLETION_WAITING_DOTS="true"
 export LANG=en_GB.UTF-8
 
@@ -22,3 +22,11 @@ export EDITOR='vim'
 # CUSTOM -----------------------
 for f in ~/.dotfiles/zsh/*.zsh; do source $f; done
 
+bindkey -v
+
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward

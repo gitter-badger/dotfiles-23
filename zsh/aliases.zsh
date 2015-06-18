@@ -2,8 +2,6 @@ alias ctags="`brew --prefix`/bin/ctags"
 
 alias dot='~/.dotfiles/';
 alias cl=clear;
-alias flex='/web/flexible-content';
-alias comp='/web/flexible-content/flexible-content-admin/src/main/webapp/static/composer';
 
 alias v='vim'
 
@@ -19,3 +17,6 @@ alias gd='git diff'
 alias kmux="tmux ls | awk '{print $1}' | sed 's/://g' | xargs -I{} tmux kill-session -t {}"
 
 alias nt="npm run test"
+alias nr="npm run"
+
+alias eclimd='/Applications/eclipse/eclimd'
