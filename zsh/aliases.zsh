@@ -20,3 +20,7 @@ alias nt="npm run test"
 alias nr="npm run"
 
 alias eclimd='/Applications/eclipse/eclimd'
+
+alias :q='exit'
+echo 'Loading alias'
+alias eclimd=/Applications/eclipse/eclimd
