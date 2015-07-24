@@ -6,3 +6,4 @@ vim/bundle/*
 .vagrant/*
 *.swp
 *.swn
+*.swo
