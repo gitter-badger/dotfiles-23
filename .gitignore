@@ -3,3 +3,6 @@ vim/bundle/*
 .idea/*
 .DS_store
 *.ignore.*
+.vagrant/*
+*.swp
+*.swn
