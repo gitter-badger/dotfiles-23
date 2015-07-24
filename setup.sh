@@ -24,3 +24,4 @@ pushd ~/.dotfiles
 
 . ./lib/backup.sh
 . ./lib/nvm.sh
+. ./lib/rbenv.sh
