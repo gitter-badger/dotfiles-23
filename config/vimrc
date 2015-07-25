@@ -181,7 +181,6 @@ endif
 " colors -->
 syntax enable
 set background=dark
-colorscheme monokai
 
 " nerdtree -->
 autocmd vimenter * NERDTree
@@ -316,3 +315,4 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 set conceallevel=0
 let g:airline#extensions#tabline#enabled = 1
+colorscheme monokai

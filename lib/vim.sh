@@ -30,3 +30,4 @@ vim +PluginInstall +qall
 cd ~/.dotfiles/vim/bundle/tern_for_vim/;
 npm install;
 
+echo "colorscheme monokai" >> ~/.vimrc
