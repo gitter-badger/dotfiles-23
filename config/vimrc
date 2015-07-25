@@ -42,7 +42,6 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-eunuch'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'justincampbell/vim-eighties'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'maxbrunsfeld/vim-yankstack'
 

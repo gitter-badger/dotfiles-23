@@ -22,9 +22,9 @@ fi
 #Move into the dotfiles directory
 pushd ~/.dotfiles
 
-. ./lib/backup.sh
-. ./lib/nvm.sh
-. ./lib/rbenv.sh
-. ./lib/tmux.sh
-. ./lib/vim.sh
-. ./lib/zsh.sh
+. ~/.dotfiles/lib/backup.sh
+. ~/.dotfiles/lib/nvm.sh
+. ~/.dotfiles/lib/rbenv.sh
+. ~/.dotfiles/lib/tmux.sh
+. ~/.dotfiles/lib/vim.sh
+. ~/.dotfiles/lib/zsh.sh

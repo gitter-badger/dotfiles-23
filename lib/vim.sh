@@ -4,7 +4,7 @@ HAS_APT=`which apt-get`
 
 #Install dependencies
 if [ $HAS_APT ]; then
-	sudo apt-get install vim git-core cmake
+	sudo apt-get install -y vim git-core build-essential  cmake python-dev
 fi
 
 #Install vim config
