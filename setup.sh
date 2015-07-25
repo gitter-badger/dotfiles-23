@@ -27,4 +27,4 @@ pushd ~/.dotfiles
 . ./lib/rbenv.sh
 . ./lib/tmux.sh
 . ./lib/zsh.sh
-
+. ./lib/vim.sh
