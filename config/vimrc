@@ -42,8 +42,6 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-eunuch'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'kshenoy/vim-signature'
-Plugin 'sjl/vitality.vim'
 Plugin 'justincampbell/vim-eighties'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'maxbrunsfeld/vim-yankstack'
@@ -300,8 +298,6 @@ let g:ctrlp_working_path_mode = 'r'
 au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn
 set cursorline cursorcolumn
-
-let g:EclimCompletionMethod = 'omnifunc'
 
 let g:indentLine_color_term = 241
 

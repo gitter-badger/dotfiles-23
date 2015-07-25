@@ -1,1 +1,0 @@
-/Users/jparsons/.vim/bundle/ultisnips/after/plugin/UltiSnips_after.vim
