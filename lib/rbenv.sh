@@ -1,7 +1,6 @@
 #!/bin/bash
 HAS_APT=`which apt-get`
 RUBY_VERSION='2.0.0-p645';
-BASH_COMMAND="RBENV_VERSION=${RUBY_VERSION}" 
 
 #Check if rbrnv is installed
 if [ ! -d ~/.rbenv  ];then 
@@ -23,8 +22,9 @@ if [ ! -d ~/.rbenv/plugins/ruby-build ]; then
 fi
 
 #Install specific ruby version
-rbenv install $RUBY_VERSION
-
-echo "export RBENV_VERSION=${RUBY_VERSION}" >> ~/.bashrc
-source ~/.bashrc
-echo `ruby -v`
+#if [ `which rbenv` ]; then 
+#	rbenv install $RUBY_VERSION
+#	echo "export RBENV_VERSION=${RUBY_VERSION}" >> ~/.bashrc
+#	source ~/.bashrc
+#	echo `ruby -v`
+#fi

@@ -1,5 +1,3 @@
-alias ctags="`brew --prefix`/bin/ctags"
-
 alias dot='~/.dotfiles/';
 alias cl=clear;
 
@@ -21,10 +19,5 @@ alias nr="npm run"
 alias ni="npm install --save "
 alias nid="npm install --save-dev"
 
-alias eclimd='/Applications/eclipse/eclimd'
-
 alias :q='exit'
-echo 'Loading alias'
-alias eclimd=/Applications/eclipse/eclimd
-
 alias tags="find . -name '*.js' -print | xargs ctags"

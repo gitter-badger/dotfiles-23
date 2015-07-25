@@ -4,7 +4,6 @@ BASE_BACKUP_DIR=~/backup
 HASH=`date | sed 's/ \+/\-/g'`
 BACKUP_DIR="${BASE_BACKUP_DIR}/${HASH}"
 
-
 echo 'Backing up old dotfiles';
 
 if [ ! -d $BACKUP_DIR ]; then
@@ -12,7 +11,14 @@ if [ ! -d $BACKUP_DIR ]; then
 	mkdir -p $BACKUP_DIR
 fi
 
+#ZSH config
 if [ -f ~/.zshrc ]; then 
 	echo 'Backing up ~/.zshrc';
 	mv ~/.zshrc $BACKUP_DIR/.zshrc;
+fi
+
+#TMUX conf
+if [ -L ~/.tmux.conf ]; then 
+	echo 'Backing up tmux.conf';
+	mv ~/.tmux.conf $BACKUP_DIR/.tmux.conf;	
 fi
