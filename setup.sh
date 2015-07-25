@@ -23,8 +23,10 @@ fi
 pushd ~/.dotfiles
 
 . ~/.dotfiles/lib/backup.sh
+. ~/.dotfiles/lib/git.sh
 . ~/.dotfiles/lib/nvm.sh
 . ~/.dotfiles/lib/rbenv.sh
 . ~/.dotfiles/lib/tmux.sh
+. ~/.dotfiles/lib/ag.sh
 . ~/.dotfiles/lib/vim.sh
 . ~/.dotfiles/lib/zsh.sh
