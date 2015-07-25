@@ -12,7 +12,7 @@ if [ ! -d $BACKUP_DIR ]; then
 fi
 
 #ZSH config
-if [ -f ~/.zshrc ]; then 
+if [ -L ~/.zshrc ]; then 
 	echo 'Backing up ~/.zshrc';
 	mv ~/.zshrc $BACKUP_DIR/.zshrc;
 fi
@@ -21,4 +21,10 @@ fi
 if [ -L ~/.tmux.conf ]; then 
 	echo 'Backing up tmux.conf';
 	mv ~/.tmux.conf $BACKUP_DIR/.tmux.conf;	
+fi
+
+#GEM conf
+if [ -L ~/.gemrc ]; then
+	echo 'Backing up .gemrc';
+	mv ~/.gemrc $BACKUP_DIR/.gemrc;
 fi

@@ -21,6 +21,8 @@ if [ ! -d ~/.rbenv/plugins/ruby-build ]; then
 	git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 fi
 
+ln -srf ./config/gemrc ~/.gemrc
+
 #Install specific ruby version
 #if [ `which rbenv` ]; then 
 #	rbenv install $RUBY_VERSION
