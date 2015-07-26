@@ -7,3 +7,4 @@ vim/bundle/*
 *.swp
 *.swn
 *.swo
+*.log

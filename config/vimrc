@@ -79,6 +79,7 @@ set hidden
 set autoread
 set cursorline
 
+colorscheme monokai
 " Highlight searches
 set hlsearch
 " Ignore case of searches
@@ -291,6 +292,7 @@ noremap <Leader>q   :cclose <CR>
 noremap <Leader>r   :redraw!<CR>
 
 noremap <C-p> :CtrlP<CR>
+
 let g:ctrlp_working_path_mode = 'r'
 
 au WinLeave * set nocursorline nocursorcolumn
@@ -315,4 +317,6 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 set conceallevel=0
 let g:airline#extensions#tabline#enabled = 1
+
 colorscheme monokai
+

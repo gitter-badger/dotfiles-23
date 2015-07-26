@@ -11,7 +11,7 @@ if [ ! -d ~/.oh-my-zsh ]; then
 fi
 
 #Change shell
-chsh -s `which zsh`
+#chsh -s `which zsh`
 
 #Add config files
 rm -rf ~/.zshrc
