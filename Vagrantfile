@@ -12,8 +12,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.memory = 4091
     v.cpus = 4
   end
- 
- 
+
+  config.vm.network "private_network", ip: "192.168.50.4"
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
+  config.vm.synced_folder "~/.ssh", "/home/vagrant/.ssh", type: "nfs"
+
   config.vm.provision "shell", inline: <<-SCRIPT
     su vagrant
     cd /vagrant/
