@@ -58,6 +58,7 @@ Plugin 'burnettk/vim-angular'
 Plugin 'groenewege/vim-less'
 Plugin 'gcmt/taboo.vim'
 Plugin 'vim-scripts/Tagbar'
+Plugin 'jl/vitality.vimi'
 " required
 call vundle#end()
 " required
@@ -319,4 +320,6 @@ set conceallevel=0
 let g:airline#extensions#tabline#enabled = 1
 
 colorscheme monokai
-
+set encoding=utf-8
+let g:airline_powerline_fonts = 1
+let g:airline_theme='molokai'
